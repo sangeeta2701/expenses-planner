@@ -1,6 +1,5 @@
+import 'package:expenses_planner/widgets/users_transactions.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets/transaction_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               elevation: 5,
             ),
           ),
-          TransactionList(),
+          UserTransaction(),
         ],
       ),
     );
