@@ -34,6 +34,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter app"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.add,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -51,6 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
             UserTransaction(),
           ],
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }
