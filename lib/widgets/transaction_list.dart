@@ -1,3 +1,4 @@
+import 'package:expenses_planner/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -12,7 +13,7 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 300,
       child: transactions.isEmpty
           ? Column(
@@ -44,7 +45,7 @@ class TransactionList extends StatelessWidget {
                             EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         decoration: BoxDecoration(
                             border: Border.all(
-                                color: Theme.of(context).primaryColor,
+                                color: appUiThemeColor,
                                 width: 2)),
                         padding: EdgeInsets.all(8),
                         child: Text(
@@ -52,7 +53,7 @@ class TransactionList extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: Theme.of(context).primaryColor,
+                            color: appUiThemeColor,
                           ),
                         ),
                       ),
@@ -69,7 +70,7 @@ class TransactionList extends StatelessWidget {
                           Text(
                             DateFormat.yMMMd().format(transactions[index].date),
                             style: TextStyle(
-                              color: Colors.grey,
+                              color: appUiGreyColor,
                             ),
                           ),
                         ],

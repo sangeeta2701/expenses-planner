@@ -1,3 +1,4 @@
+import 'package:expenses_planner/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatefulWidget {
@@ -54,7 +55,7 @@ class _NewTransactionState extends State<NewTransaction> {
               onPressed: submitData,
               child: Text(
                 "Add Transaction",
-                style: TextStyle(color: Colors.purple),
+                style: TextStyle(color: appUiThemeColor),
               ),
             ),
           ],

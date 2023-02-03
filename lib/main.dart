@@ -1,3 +1,5 @@
+import 'package:expenses_planner/utils/constants.dart';
+import 'package:expenses_planner/widgets/chart.dart';
 import 'package:expenses_planner/widgets/new_transactions.dart';
 import 'package:expenses_planner/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Personal Expenses",
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-      ),
+      
       home: MyHomePage(),
     );
   }
@@ -52,6 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // ),
   ];
 
+  List<Transaction> get _recentTransactions {
+    return _userTransaction.where((tx) {
+      return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
+
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
@@ -77,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appUiThemeColor,
         title: Text(
           "Personal Expenses",
           style: GoogleFonts.quicksand(
@@ -100,20 +106,14 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text("CHART!"),
-                elevation: 5,
-              ),
-            ),
+            Chart(_recentTransactions),
             TransactionList(transactions: _userTransaction),
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: appUiThemeColor,
         onPressed: () {
           startAddNewTransaction();
         },

@@ -1,3 +1,4 @@
+import 'package:expenses_planner/widgets/chart_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -13,7 +14,7 @@ class Chart extends StatelessWidget {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
       );
-      double totalSum = 0.0;
+      double totalSum = 0.00;
 
       for (var i = 0; i < recentTransaction.length; i++) {
         if (recentTransaction[i].date.day == weekDay.day &&
@@ -22,9 +23,17 @@ class Chart extends StatelessWidget {
           totalSum += recentTransaction[i].amount;
         }
       }
-      print(DateFormat.EEEE(weekDay));
-      print(totalSum);
-      return {'day': DateFormat.EEEE(weekDay), 'amount': totalSum};
+
+      return {
+        'day': DateFormat.EEEE().format(weekDay).substring(0, 1),
+        'amount': totalSum
+      };
+    });
+  }
+
+  double get totalSpending {
+    return groupedTransactionValues.fold(0.0, (sum, item) {
+      return sum + (item['amount'] as double);
     });
   }
 
@@ -34,7 +43,15 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
-        children: [],
+        children: groupedTransactionValues.map((data) {
+          return ChartBar(
+            data['day'] as String,
+            data['amount'] as double,
+            totalSpending == 0
+                ? 0.0
+                : (data['amount'] as double) / totalSpending,
+          );
+        }).toList(),
       ),
     );
   }
