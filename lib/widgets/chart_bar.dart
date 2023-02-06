@@ -12,31 +12,43 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('\$${spendingAmount.toStringAsFixed(0)}'),
+        FittedBox(child: Text('\$${spendingAmount.toStringAsFixed(0)}')),
         Padding(
-          padding: const EdgeInsets.only(top:5.0),
-          child: Stack(
-            children:[
-              Container(
-              height: 60,
-              width: 10,
-              decoration: BoxDecoration(
-                border: Border.all(color: appUiBorderGreyColor,width: 1),
-                color: Color.fromRGBO(220, 220, 220, 1),
-                borderRadius: BorderRadius.circular(10),
+          padding: const EdgeInsets.only(top: 5.0),
+          child: SizedBox(
+            width: 10,
+            height: 80,
+            child: Stack(children: [
+              Positioned(
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                child: Container(
+                  height: 60,
+                  width: 10,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: appUiBorderGreyColor, width: 1),
+                    color: Color.fromRGBO(220, 220, 220, 1),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
-            ),
-            FractionallySizedBox(heightFactor: spendingAmountofTotal,child: Container(
-              decoration: BoxDecoration(
-                color: appUiThemeColor,
-                borderRadius: BorderRadius.circular(10),
+              FractionallySizedBox(
+                heightFactor: spendingAmountofTotal,
+                child: Container(
+                  width: 10,
+                  decoration: BoxDecoration(
+                    color: appUiThemeColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
-            ),),
-            ] 
+            ]),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top:5.0),
+          padding: const EdgeInsets.only(top: 5.0),
           child: Text(lable),
         )
       ],
