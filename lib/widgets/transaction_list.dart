@@ -1,3 +1,4 @@
+import 'package:expenses_planner/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -40,6 +41,7 @@ class TransactionList extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                   child: ListTile(
                     leading: CircleAvatar(
+                      backgroundColor: appUiThemeColor,
                       radius: 30,
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),

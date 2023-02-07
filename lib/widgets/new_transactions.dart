@@ -51,11 +51,40 @@ class _NewTransactionState extends State<NewTransaction> {
               ),
               onSubmitted: (_) => submitData(),
             ),
-            TextButton(
-              onPressed: submitData,
-              child: Text(
-                "Add Transaction",
-                style: TextStyle(color: appUiThemeColor),
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: [
+                  Text("No date chosen!"),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Choose Date",
+                      style: TextStyle(
+                          color: appUiThemeColor, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: GestureDetector(
+                onTap: submitData,
+                child: Container(
+                  height: 35,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: appUiThemeColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Add Transaction",
+                      style: TextStyle(color: appUiLightColor),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
