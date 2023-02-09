@@ -6,9 +6,12 @@ import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  TransactionList({Key? key, required this.transactions}) : super(key: key);
+  TransactionList(
+      {Key? key, required this.transactions, required this.deleteTx})
+      : super(key: key);
 
   final List<Transaction> transactions;
+  final Function deleteTx;
   // TransactionList(this.transactions);
 
   @override
@@ -46,7 +49,13 @@ class TransactionList extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: FittedBox(
-                            child: Text("\$${transactions[index].amount}")),
+                            child: Text(
+                          "\$${transactions[index].amount}",
+                          style: TextStyle(
+                              color: appUiLightColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
+                        )),
                       ),
                     ),
                     title: Text(
@@ -59,6 +68,13 @@ class TransactionList extends StatelessWidget {
                     subtitle: Text(
                       DateFormat.yMMMd().format(transactions[index].date),
                     ),
+                    trailing: IconButton(
+                        onPressed: () => deleteTx(transactions[index].id),
+                        icon: Icon(
+                          Icons.delete,
+                          color: appUiThemeColor,
+                          size: 25,
+                        )),
                   ),
                 );
                 // return Card(
