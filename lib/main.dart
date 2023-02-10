@@ -88,36 +88,47 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: appUiThemeColor,
-        title: Text(
-          "Personal Expenses",
-          style: GoogleFonts.quicksand(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    final appBar = AppBar(
+      backgroundColor: appUiThemeColor,
+      title: Text(
+        "Personal Expenses",
+        style: GoogleFonts.quicksand(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            startAddNewTransaction();
+          },
+          icon: Icon(
+            Icons.add,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              startAddNewTransaction();
-            },
-            icon: Icon(
-              Icons.add,
-            ),
-          ),
-        ],
-      ),
+      ],
+    );
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Chart(_recentTransactions),
-            TransactionList(
-              transactions: _userTransaction,
-              deleteTx: _deleteTransaction,
+            Container(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.4,
+                child: Chart(_recentTransactions)),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height) *
+                  0.6,
+              child: TransactionList(
+                transactions: _userTransaction,
+                deleteTx: _deleteTransaction,
+              ),
             ),
           ],
         ),
